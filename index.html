@@ -11,57 +11,128 @@
     
     <!--title-->
   <title>table</title>
+  <script>
+    //setting up my variables i need
+    var theTime = new Date();
+    var tempTime = new Date();
+    var time_interval = 5000;
+    var last_iteration = 0;
+    var running = true;
+    var index = 0;
+    var timer;
+
+    //load data into the array
+    var data = getData();
+
+    //function to load and display data
+    function updateDisplay() {
+        theTime = new Date();
+        //debugging time
+        console.log(
+            "Display : " + (theTime.getHours() < 10 ? "0"+ theTime.getHours() : theTime.getHours()) +
+            " : " + (theTime.getMinutes() < 10 ? "0"+ theTime.getMinutes() : theTime.getMinutes()) + 
+            " : " + (theTime.getSeconds() < 10 ? "0"+ theTime.getSeconds() : theTime.getSeconds())
+        );
+
+        var timeRead = data[index].time_seconds;
+        if (timeRead >= 10) {
+            document.getElementById("data").rows["seconds"].innerHTML = dataRow("Time Elapsed", data[index].time_seconds,"seconds");
+            document.getElementById("data").rows["latitude"].innerHTML = dataRow("Latitude", data[index].latitude," ");
+            document.getElementById("data").rows["longitude"].innerHTML = dataRow("Longitude", data[index].longitude," ");
+            document.getElementById("data").rows["gps_altitude"].innerHTML = dataRow("gps Altitude", data[index].gps_altitude,"");
+            document.getElementById("data").rows["bmpSensor_altitude"].innerHTML = dataRow("BMP Sensor Altitude", data[index].bmpSensor_altitude,"");
+            document.getElementById("data").rows["bmpSensor_pressure"].innerHTML = dataRow("BMP Sensor Pressure", data[index].bmpSensor_pressure,"");
+            document.getElementById("data").rows["bmpSensor_temp"].innerHTML = dataRow("BMP Sensor Temp", data[index].bmpSensor_temp,"");
+            document.getElementById("data").rows["cssSensor_temp"].innerHTML = dataRow("CSS Sensor Temp", data[index].cssSensor_temp,"");
+            document.getElementById("data").rows["cssSensor_eCO2"].innerHTML = dataRow("CSS Sensor eCO2", data[index].cssSensor_eCO2,"");
+            document.getElementById("data").rows["cssSensor_TVOC"].innerHTML = dataRow("CSS Sensor TVOC", data[index].cssSensor_TVOC,"");
+            document.getElementById("data").rows["UV"].innerHTML = dataRow("UV", data[index].UV,"");
+            document.getElementById("data").rows["accelX"].innerHTML = dataRow("accelX", data[index].accelX,"");
+            document.getElementById("data").rows["accelY"].innerHTML = dataRow("accelY", data[index].accelY,"");
+            document.getElementById("data").rows["accelZ"].innerHTML = dataRow("accelZ", data[index].accelZ,"");
+            document.getElementById("data").rows["magneticX"].innerHTML = dataRow("magneticX", data[index].magneticX,"");
+            document.getElementById("data").rows["magneticY"].innerHTML = dataRow("magneticY", data[index].magneticY,"");
+            document.getElementById("data").rows["magneticZ"].innerHTML = dataRow("magneticZ", data[index].magneticZ,"");
+            document.getElementById("data").rows["gyroX"].innerHTML = dataRow("gyroX", data[index].gyroX,"");
+            document.getElementById("data").rows["gyroY"].innerHTML = dataRow("gyroY", data[index].gyroY,"");
+            document.getElementById("data").rows["gyroZ"].innerHTML = dataRow("gyroZ", data[index].gyroZ,"");
+
+            if (index < 500) {
+                index++;
+            } else {
+                index = 0;
+            }
+        }
+
+        //displays the time at the bottom
+        document.getElementById("time").innerHTML = (theTime.getHours() < 10 ? "0"+ theTime.getHours() : theTime.getHours()) +
+            " : " + (theTime.getMinutes() < 10 ? "0"+ theTime.getMinutes() : theTime.getMinutes()) + 
+            " : " + (theTime.getSeconds() < 10 ? "0"+ theTime.getSeconds() : theTime.getSeconds())
+    }
+</script>
 </head>
 
 </head>
 <body>
-    
-<!--table-->
-<table class="tableTop">
-    <tr>
-        <!--tr is a row in a table-->
-        <td><img class="frog"src="frog.png" /></td>
-        <td>
-<h1> Lazy Frog Jumping </h1>
-        </td>
-    </tr>
-</table>
-<table id="data" border="2" width="70%">
-    <col style="width: 35%;">
-    <col style="width: 35%;">
- 
-    
-    <!--table rows-->
-    <tbody style="font-weight: bolder;">
-        <tr id="seconds"></tr>
-        <tr id="latitude"></tr>
-        <tr id="longitude"></tr>
-        <tr id="seconds"><td>Time Elapsed:</td><td>15 seconds</td></tr>
-        <tr id="latitude"><td>Latitude:</td><td>0</td></tr>
-        <tr id="longitude"><td>Longitude:</td><td>0</td></tr>
-        <tr id="gps_altitude"><td>GPS Altitude:</td><td>0</td></tr>
-        <tr id="bmpSensor_altitude"><td>BMP Sensor Altitude:</td><td>30383.04</td></tr>
-        <tr id="bmpSensor_pressure"><td>BMP Sensor Pressure:</td><td>2.34</td></tr>
-        <tr id="bmpSensor_temp"><td>BMP Sensor Temp:</td><td>0</td></tr>
-        <tr id="bdigSensor_temp"><td>Digital Sensor Temp:</td><td>24.12</td></tr>
-        <tr id="cssSensor_temp"><td>CSS Sensor Temp:</td><td>25</td></tr>
-        <tr id="cssSensor_eCO2"><td>CSS Sensor eCO2:</td><td>400</td></tr>
-        <tr id="cssSensor_TVOC"><td>CSS Sensor TVOC:</td><td>0</td></tr>
-        <tr id="UV"><td>UV:</td><td>0</td></tr>
-        <tr id="accelX"><td>accelX:</td><td>-0.87</td></tr>
-        <tr id="accelY"><td>accelY:</td><td>-0.02</td></tr>
-        <tr id="accelZ"><td>accelZ:</td><td>9.61</td></tr>
-        <tr id="gyroX"><td>gyroX:</td><td>0.13</td></tr>
-        <tr id="gyroY"><td>gyroY:</td><td>0.57</td></tr>
-        <tr id="gyroZ"><td>gyroY:</td><td>-0.24</td></tr>
-        <tr id="magneticX"><td>magneticX:</td><td>4.66</td></tr>
-        <tr id="magneticY"><td>magneticY:</td><td>0.01</td></tr>
-        <tr id="magneticZ"><td>magneticZ:</td><td>-0.4</td></tr>
-       
-    </tbody>
-</table>
-
-
+    <script>
+        var mySound;
+    </script>
+    <p class="top">
+        <table class="tableTop">
+            <tr> <!--tr defines a row-->
+                <td> <!--td define a left aligned reguler th bold and centered-->
+                    <img src="images/UATSpace.png" />
+                </td>
+                <td>
+                    <h1>
+                        UAT Space Program
+                    </h1>
+                </td>
+            </tr>
+        </table>
+    </p>
+    <table id="data" border="2" width="70%" class="table2">
+        <col style="width: 35%;">
+        <col style="width: 35%;">
+        <thead>
+            <tr style="font-family: fantasy;">
+                <th align="left">Data Type</th> <!--this is a table header-->
+                <th align="left">Reading</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr id="seconds"></tr>
+            <tr id="latitude"></tr>
+            <tr id="longitude"></tr>
+            <tr id="gps_altitude"></tr>
+            <tr id="bmpSensor_altitude"></tr>
+            <tr id="bmpSensor_pressure"></tr>
+            <tr id="bmpSensor_temp"></tr>
+            <tr id="digSensor_temp"></tr>
+            <tr id="cssSensor_temp"></tr>
+            <tr id="cssSensor_eCO2"></tr>
+            <tr id="cssSensor_TVOC"></tr>
+            <tr id="UV"></tr>
+            <tr id="accelX"></tr>
+            <tr id="accelY"></tr>
+            <tr id="accelZ"></tr>
+            <tr id="magneticX"></tr>
+            <tr id="magneticY"></tr>
+            <tr id="magneticZ"></tr>
+            <tr id="gyroX"></tr>
+            <tr id="gyroY"></tr>
+            <tr id="gyroZ"></tr>
+        </tbody>
+    </table>
+    <br>
+    <input id="startButton" type="button" value="Start" onclick="start();" class="button" />
+    <input id="stopButton" type="button" value="Stop" onclick="stop();" disabled=true class="button" />
+    <br>
+    <br>
+    <input id="playStationButton" type="button" value="Play Space Station Sounds" onclick="playStation();" class="lgButton" />
+    <br>
+    <br>
+    The current time is: <div id="time"></div>
 
 </body>
 </html>
