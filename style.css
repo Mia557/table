@@ -13,5 +13,10 @@ body {
 
 .buttonsC {
     font-family: 'Redressed', cursive;
-
-}
+    transition-duration: 0.4s;
+  }
+  
+  .buttonsC:hover {
+    background-color: #808080; 
+    color: white;
+  }
