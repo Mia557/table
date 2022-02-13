@@ -34,8 +34,8 @@ function sound(src) {
     }
 }
 
-function playStation() {
-    mySound = new sound("us-lab-background.mp3");
+function countdown() {
+    mySound = new sound("countdown.mp3");
     mySound.play();
 }
 
