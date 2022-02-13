@@ -1,3 +1,4 @@
+<!--Mia Goodwin, JavaScript DOM and Document Structure with tables, Themes, and Mock data, 2/13/22-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +13,7 @@
     <!--title-->
   <title>table</title>
   <script>
-    //setting up my variables i need
+    //variables
     var theTime = new Date();
     var tempTime = new Date();
     var time_interval = 5000;
@@ -21,13 +22,14 @@
     var index = 0;
     var timer;
 
-    //load data into the array
+    //data for the array
     var data = getData();
 
     //function to load and display data
     function updateDisplay() {
         theTime = new Date();
-        //debugging time
+
+        //debugging 
         console.log(
             "Display : " + (theTime.getHours() < 10 ? "0"+ theTime.getHours() : theTime.getHours()) +
             " : " + (theTime.getMinutes() < 10 ? "0"+ theTime.getMinutes() : theTime.getMinutes()) + 
@@ -64,7 +66,7 @@
             }
         }
 
-        //displays the time at the bottom
+        // time at the bottom
         document.getElementById("time").innerHTML = (theTime.getHours() < 10 ? "0"+ theTime.getHours() : theTime.getHours()) +
             " : " + (theTime.getMinutes() < 10 ? "0"+ theTime.getMinutes() : theTime.getMinutes()) + 
             " : " + (theTime.getSeconds() < 10 ? "0"+ theTime.getSeconds() : theTime.getSeconds())
@@ -95,8 +97,9 @@
         <col style="width: 35%;">
         <col style="width: 35%;">
         <thead>
+             <!--this is a table header-->
             <tr style="font-family: fantasy;">
-                <th align="left">Data Type</th> <!--this is a table header-->
+                <th align="left">Data Type</th>
                 <th align="left">Reading</th>
             </tr>
         </thead>

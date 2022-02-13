@@ -1,3 +1,5 @@
+/* Mia Goodwin, JavaScript DOM and Document Structure with tables, Themes, and Mock data, 2/13/2*/
+
 /****************************************************************
  * Functions
 ****************************************************************/
